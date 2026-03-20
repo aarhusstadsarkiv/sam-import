@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            h2 {
+                margin-top: 32px;
+                margin-bottom: 0;
+            }
+            
+            p {
+                margin-top: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Afleveringsaftale</h1>
+        <hr>
+        <p>
+            Nedenstående filaflevering er foretaget via en webformular på Aarhus Stadsarkivs dertil indrettede hjemmeside www.smartarkivering.dk. Giverens identifikation er garanteret gennem integration med MITID-login.
+        </p>
+        <h2>Giver</h2>
+        <p>
+            {{ data.navn }}
+            <br>
+            {{ data.email }}
+            <br>
+            {{ data.telefon }}
+        </p>
+        <h2>Indholdsbeskrivelse (fra Giver)</h2>
+        <p>{{ data.description }}</p>
+        <h2>Afleverede filer</h2>
+        {% for file in data.files %}
+        <p>
+            {{ file.filename }}
+            <br>
+            <span style="font-size: 13px;">checksum (SHA256): {{ file.checksum[7:] }}</span>
+            <br>
+        </p>
+        {% endfor %}
+        <h2>Vilkår</h2>
+        <p>
+            De afleverede filer er afleveret under følgende vilkår, som giveren aktivt skulle acceptere, før filerne kunne uploades.
+            <br>
+            <br>
+            "Du garanterer, at:
+            <br>
+            - Materialet, du uploader, ikke er ophavsretsligt beskyttet eller
+            <br>
+            - du alene har rettighederne til materialet eller
+            <br>
+            - rettighedshaver (en eller flere) har autoriseret, at du indsender materialet under følgende betingelser:
+            <br>
+            <br>
+            Du accepterer, at:
+            <br>
+            Det uploadede materiale (fotos, video, musik, dagbøger m.v.) må bruges og formidles af alle, så længe ejeren eller ejerne af ophavsrettighederne hver gang angives på ordentlig vis, og så længe materialet ikke benyttes i sammenhænge, der på nogen måde krænker rettighedshaverne.
+            <br>
+            Hvis nogen efterfølgende skaber nyt materiale på baggrund af det afleverede materiale, skal dit oprindelige materiale, samt dets rettighedshavere, stadig angives.
+            <br>
+            De informationer, hvormed du i formularen beskriver dit materiale (ikke din kontaktinformation), er fri for alle til at bruge.
+            <br>
+            Hvis du ikke kan acceptere disse vilkår, er du som nævnt velkommen til at kontakte stadsarkivet, så vi kan finde en alternativ løsning.
+            <br><br>
+            Brug af personoplysninger
+            <br>
+            Kun dit navn (enten som giver af materialet og/eller som rettighedshaver) offentliggøres ved siden af det uploadede materiale, hvis dette godkendes til bevaring.
+            <br><br>
+            Vi bruger udelukkende dine øvrige kontaktoplysninger, inkl. din e-mail-adresse, til at kontakte dig om dine bidrag til denne samling.
+            <br><br>
+            Vi videregiver ikke dine kontaktoplysninger til andre.
+            <br><br>
+            Bevaring og kassation
+            <br>
+            Aarhus Stadsarkiv forbeholder sig ret til at kassere i det afleverede materiale.
+        </p>
+    </body>
+</html>

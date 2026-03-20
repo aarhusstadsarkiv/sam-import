@@ -1,0 +1,16 @@
+[project]
+name = "sam-import"
+version = "0.1.1"
+authors = [
+    {name = "Simon Glob"}
+]
+description = "Genererer metadata for en aflevering ud fra webformularen."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "jinja2>=3.1.6",
+    "weasyprint>=68.1",
+]
+
+[project.scripts]
+sam-import = "main:main"
