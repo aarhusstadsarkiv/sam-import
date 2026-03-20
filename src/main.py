@@ -94,7 +94,7 @@ def handle_folder(dir_path: Path) -> None:
         dir_path.rename(dir_path.parent / (dir_path.name + "_DONE"))
 
     print(
-        f"Successfully geneerated '_regnote.txt', 'metadata.csv' and 'opretshav.pdf' for {dir_path.name[:-5]}"
+        f"Successfully generated '_regnote.txt', 'metadata.csv' and 'opretshav.pdf' for {dir_path.name[:-5]}"
     )
 
 
