@@ -1,6 +1,6 @@
 [project]
 name = "sam-import"
-version = "0.1.1"
+version = "0.1.5"
 authors = [
     {name = "Simon Glob"}
 ]
@@ -19,3 +19,9 @@ dev = [
 
 [project.scripts]
 sam-import = "sam_import.main:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+sam_import = ["resources/*.html"]

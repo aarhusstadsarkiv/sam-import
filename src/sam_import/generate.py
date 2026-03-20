@@ -1,6 +1,7 @@
 import csv
 import json
 from hashlib import md5
+from importlib.resources import files
 from pathlib import Path
 from typing import Any
 
@@ -13,7 +14,11 @@ telefon: {telefon}
 email: {email}
 """
 
-ENVIRONMENT = Environment(loader=FileSystemLoader("./src/resources"))
+
+template_dir = files("sam_import") / "resources"
+
+ENVIRONMENT = Environment(loader=FileSystemLoader(str(template_dir)))
+
 TEMPLATE = ENVIRONMENT.get_template("template.html")
 
 

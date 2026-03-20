@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 
-from generate import handle_folder
+from .generate import handle_folder
 
 
 def main():
