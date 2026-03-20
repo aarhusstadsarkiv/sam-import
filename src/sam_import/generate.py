@@ -1,6 +1,3 @@
-#!/usr/bin/env -S uv run --script
-
-import argparse
 import csv
 import json
 from hashlib import md5
@@ -15,9 +12,6 @@ navn: {navn}
 telefon: {telefon}
 email: {email}
 """
-
-# script_dir = os.path.dirname(os.path.abspath(__file__))
-# resources_path = os.path.join(script_dir, "resources")
 
 ENVIRONMENT = Environment(loader=FileSystemLoader("./src/resources"))
 TEMPLATE = ENVIRONMENT.get_template("template.html")
@@ -39,11 +33,19 @@ def handle_folder(dir_path: Path) -> None:
 
     data = json.loads(submission.read_bytes())
 
+    if "telefon" not in data:
+        data["telefon"] = ""
+        print("Warning: Telefon number is not present in submission.json")
+
+    if "email" not in data:
+        data["email"] = ""
+        print("Warning: Email is not present in submission.json")
+
     regnote = dir_path / "_regnote.txt"
     regnote_content = REGNOTE_TEMPLATE.format(
         navn=data["navn"],
-        telefon=data["telefon"] if "telefon" in data else "",
-        email=data["email"] if "email" in data else "",
+        telefon=data["telefon"],
+        email=data["email"],
     )
     regnote.write_text(regnote_content.strip())
 
@@ -90,26 +92,6 @@ def handle_folder(dir_path: Path) -> None:
 
     generate_copyright_pdf(data, dir_path / "ophavsret.pdf")
 
-    if "_DONE" not in dir_path.name:
-        dir_path.rename(dir_path.parent / (dir_path.name + "_DONE"))
-
     print(
-        f"Successfully generated '_regnote.txt', 'metadata.csv' and 'opretshav.pdf' for {dir_path.name[:-5]}"
+        f"Successfully generated '_regnote.txt', 'metadata.csv' and 'opretshav.pdf' for {dir_path.name}"
     )
-
-
-def main():
-    parser = argparse.ArgumentParser(
-        prog="sam-import",
-        description="Et script der generere metadata for en aflevering ud fra webformularen.",
-    )
-    parser.add_argument("path", help="Sti til mappen, der skal genereres metadata for.")
-    args = parser.parse_args()
-
-    path = Path(args.path)
-
-    handle_folder(path)
-
-
-if __name__ == "__main__":
-    main()

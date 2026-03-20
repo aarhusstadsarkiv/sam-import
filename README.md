@@ -13,7 +13,7 @@ Et script der genererer metadata ud fra en webfomular.
 ## Installation
 
 ```bash
-uv run main.py <sti-til-mappe>
+uv run src/sam_import/main.py <sti-til-mappe>
 ```
 
 Programmet behandler alle undermapper rekursivt.

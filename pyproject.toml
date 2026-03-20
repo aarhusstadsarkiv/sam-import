@@ -12,5 +12,10 @@ dependencies = [
     "weasyprint>=68.1",
 ]
 
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
+
 [project.scripts]
-sam-import = "main:main"
+sam-import = "sam_import.main:main"
